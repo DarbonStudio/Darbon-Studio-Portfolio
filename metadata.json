@@ -1,0 +1,8 @@
+{
+  "name": "Darbon Studio Portfolio",
+  "description": "Portfolio interactive carousel and project showcase for Darbon Studio",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

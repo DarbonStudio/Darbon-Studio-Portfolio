@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darbon Studio | Projet</title>
+    <!-- Chargement de la police Bricolage Grotesque -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="project-style.css">
+    
+    <!-- ÉTAPE CLÉ : Déclaration unique globale de lecture d'URL pour éviter la SyntaxError -->
+    <script>
+        const projectParams = new URLSearchParams(window.location.search);
+    </script>
+</head>
+<body>
+
+    <div class="project-page-wrapper">
+
+        <!-- SECTION 1 : PREMIER ÉCRAN (HERO PLEIN ÉCRAN) -->
+        <section class="project-hero">
+            <div class="project-hero-container">
+                <!-- document.write synchrone pour garantir que la source de l'image est lue dès l'analyse HTML brute -->
+                <script>
+                    const imgUrl = projectParams.get('img') || 'https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80';
+                    document.write('<img id="project-hero-image" src="' + imgUrl + '" alt="Image de projet">');
+                </script>
+            </div>
+
+            <div class="project-details-overlay">
+                <button class="back-button" id="back-btn">← RETOUR AUX PROJETS</button>
+                
+                <div class="project-info-grid">
+                    <div class="info-meta">
+                        <span class="info-label">Projet</span>
+                        <h1 id="detail-title">—</h1>
+                        
+                        <span class="info-label">Service</span>
+                        <p id="detail-category">—</p>
+                        
+                        <span class="info-label">Date</span>
+                        <p id="detail-date">—</p>
+                        
+                        <span class="info-label">Client</span>
+                        <p id="detail-client">—</p>
+                    </div>
+                    <div class="info-description">
+                        <p id="detail-description">—</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 : CONTENU SCROLLABLE (SOUS LE PLI) -->
+        <section class="project-scroll-content">
+            
+            <div class="content-row">
+                <h2>L'Approche</h2>
+                <p>Chaque projet de l'atelier fait l'objet d'une recherche rigoureuse sur la dynamique des fluides visuels, la forme et l'interactivité. Nous concevons des objets et des interfaces capables de transmettre un sentiment de performance et d'élasticité.</p>
+            </div>
+
+            <div class="project-image-grid">
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&w=800&q=80" alt="Détail Studio 1">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80" alt="Détail Studio 2">
+                </div>
+            </div>
+
+            <div class="content-row">
+                <h2>Le Résultat</h2>
+                <p>Le produit final propose une résonance unique entre design esthétique et ergonomie sportive. En combinant des animations à forte inertie et une direction artistique minimaliste, l'expérience finale est à la fois percutante et mémorable.</p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- SCRIPT DE LECTURE ET SÉQUENCE DE SORTIE -->
+    <script>
+        // Réutilisation de la constante unique "projectParams" déclarée en haut (pas de re-déclaration pour éviter l'erreur) [2.1.2]
+        const title = projectParams.get('title') || 'Projet Vedette';
+        const category = projectParams.get('category') || 'Direction Artistique';
+        const date = projectParams.get('date') || '2026';
+        const client = projectParams.get('client') || 'Darbon Studio';
+        const desc = projectParams.get('desc') || '';
+
+        // Injection des textes
+        document.getElementById('detail-title').innerHTML = title;
+        document.getElementById('detail-category').innerText = category;
+        document.getElementById('detail-date').innerText = date;
+        document.getElementById('detail-client').innerText = client;
+        document.getElementById('detail-description').innerText = desc;
+
+        // GESTION DE LA SÉQUENCE DE SORTIE (TEXTES RAPIDEMENT EN PREMIER)
+        document.getElementById('back-btn').addEventListener('click', () => {
+            // 1. Déclenche le fondu de sortie rapide des textes en CSS
+            document.body.classList.add('exiting');
+            
+            // 2. Attend que les textes aient disparu (300ms) avant de lancer le retour historique
+            setTimeout(() => {
+                history.back();
+            }, 300);
+        });
+    </script>
+</body>
+</html>

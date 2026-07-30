@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darbon Studio | Portfolio</title>
+    <!-- Chargement combiné des polices Bricolage Grotesque & Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. EN-TÊTE (HEADER) -->
+    <header class="site-header">
+        <a href="#" class="logo-link">
+            <img src="Logo.webp" alt="Darbon Studio Logo" class="logo-img">
+        </a>
+        <nav class="nav-links">
+            <a href="#about" class="nav-link">About.</a>
+            <a href="#contact" class="nav-link">Contact.</a>
+        </nav>
+    </header>
+
+    <!-- CONTENEUR CENTRAL UNIQUE -->
+    <div class="showcase-container">
+
+        <!-- CAROUSEL PERSPECTIVE -->
+        <div class="carousel-perspective">
+            
+            <!-- Le rail horizontal contenant vos cartes projets réelles -->
+            <div class="carousel-track">
+                
+                <!-- Projet 1 -->
+                <div class="card" 
+                     data-title="App COLOC'tif" 
+                     data-category="Design de produit"
+                     data-date="2025"
+                     data-client="Chronos Corp."
+                     data-description="Une étude approfondie sur le minimalisme horloger, fusionnant technologie intelligente et matériaux durables pour shaping l'objet de demain.">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Montre Connectée">
+                    </div>
+                </div>
+
+                <!-- Projet 2 -->
+                <div class="card" 
+                     data-title="App COLOC'tif" 
+                     data-category="Identité visuelle"
+                     data-date="2024"
+                     data-client="Association Le Coiff'"
+                     data-description="Conception d'une charte graphique dynamique et chaleureuse pour un concept novateur de salon de coiffure collaboratif et éco-responsable.">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Coloc'tif">
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="card" 
+                     data-title="Motion 9 Squares" 
+                     data-category="Illustration"
+                     data-date="2026"
+                     data-client="Squares Arcade"
+                     data-description="Série d'illustrations vectorielles explorant la géométrie, l'isométrie et les palettes chromatiques nostalgiques inspirées du rétro-gaming.">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?auto=format&fit=crop&w=600&q=80" alt="Squares Arcade">
+                    </div>
+                </div>
+
+                <!-- Projet 4 -->
+                <div class="card" 
+                     data-title="Restaurant<br>Focaccia" 
+                     data-category="Identité visuelle"
+                     data-date="2026"
+                     data-client="Focaccia Group"
+                     data-description="Identité de marque complète et direction de la scénographie intérieure pour un bistro gastronomique italien situé au cœur du quartier historique.">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=600&q=80" alt="Restaurant Focaccia">
+                    </div>
+                </div>
+
+                <!-- Projet 5 -->
+                <div class="card" 
+                     data-title="Gloria Communication" 
+                     data-category="Branding"
+                     data-date="2023"
+                     data-client="Galerie G"
+                     data-description="Création d'une identité visuelle minimale et d'une enseigne en relief pour une galerie d'art contemporain et d'artisanat d'art.">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80" alt="Enseigne G">
+                    </div>
+                </div>
+
+                <!-- Projet 6 -->
+                <div class="card" 
+                     data-title="Imagine School" 
+                     data-category="Design de produit"
+                     data-date="2025"
+                     data-client="Chronos Corp."
+                     data-description="Seconde itération de l'interface et du boîtier métallique de la montre, perfectionnant la texture et le retour haptique de la couronne rotative.">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Montre Connectée">
+                    </div>
+                </div>
+
+                <!-- Projet 7 -->
+                <div class="card" 
+                     data-title="App COLOC'tif" 
+                     data-category="Identité visuelle"
+                     data-date="2024"
+                     data-client="Association Le Coiff'"
+                     data-description="Déclinaison de l'identité graphique sur l'ensemble de la signalétique physique du salon ainsi que sur l'interface de réservation mobile.">
+                    <div class="card-media">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Coloc'tif">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bloc d'informations fixe et centré placé élégamment sous la carte active -->
+            <div class="active-project-info">
+                <h3 id="active-title">RESTAURANT FOCACCIA</h3>
+                <p id="active-category">DIRECTION ARTISTIQUE</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 4. PIED DE PAGE (FOOTER) -->
+    <footer class="site-footer">
+        <div class="social-links">
+            <a href="https://behance.net" target="_blank">Behance.</a>
+            <a href="https://linkedin.com" target="_blank">Linkedin.</a>
+        </div>
+    </footer>
+
+    <!-- INDICATEUR DE SCROLL MINIMALISTE -->
+    <div class="scroll-indicator">
+        <span>Scroll to slide.</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

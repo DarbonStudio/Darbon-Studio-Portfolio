@@ -1,0 +1,288 @@
+/* ==========================================================================
+   1. RESET & VARIABLES GLOBALES
+   ========================================================================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --card-width: 500px;
+    --card-height: 390px;
+}
+
+body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    align-items: center;       
+    justify-content: center;   
+    padding: clamp(20px, 3.5vh, 50px) clamp(20px, 3.5vw, 50px);
+    font-variation-settings: "opsz" 72;
+    position: relative;        
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   VITESSE DE TRANSITION LORS DU RETOUR (RAPIDE ET DYNAMIQUE - 0.45s)
+   ========================================================================== */
+   @view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(root),
+::view-transition-group(project-image) {
+    animation-duration: 0.45s !important; /* Rapprochement ultra-rapide */
+}
+
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(project-image),
+::view-transition-new(project-image) {
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* ==========================================================================
+   2. EN-TÊTE (HEADER) ET PIED DE PAGE (FOOTER)
+   ========================================================================== */
+.site-header {
+    position: absolute;        
+    top: clamp(20px, 4vh, 50px);                 
+    left: clamp(20px, 4vw, 50px);
+    right: clamp(20px, 4vw, 50px);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+.logo-img {
+    height: auto;
+    max-height: clamp(55px, 5vw, 85px);
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    font-size: clamp(13px, 1.1vw, 15px);
+    text-transform: lowercase; 
+    letter-spacing: -0.2px;
+    transition: opacity 0.3s ease;
+    font-variation-settings: "opsz" 72, "wght" 500;
+}
+
+.nav-link:hover {
+    opacity: 0.5;
+}
+
+.site-footer {
+    position: absolute;        
+    bottom: clamp(20px, 4vh, 50px);              
+    left: clamp(20px, 4vw, 50px);
+    right: clamp(20px, 4vw, 50px);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 10;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    font-size: clamp(13px, 1.1vw, 15px);
+    text-transform: lowercase; 
+    letter-spacing: -0.2px;
+    transition: opacity 0.3s ease;
+    font-variation-settings: "opsz" 72, "wght" 500;
+}
+
+.social-links a:hover {
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   3. ZONE DE SLIDE CENTRALE
+   ========================================================================== */
+.showcase-container {
+    position: absolute;
+    top: 45%; /* MODIFIÉ : Remonté de 50% à 44% pour ré-équilibrer la hauteur du carrousel et du grand texte */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.carousel-perspective {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1100px; 
+    transform-style: preserve-3d;
+}
+
+.carousel-track {
+    position: relative;
+    width: var(--card-width, 600px); 
+    height: var(--card-height, 390px); 
+    transform-style: preserve-3d;
+}
+
+/* Style d'une carte projet - Paysage Horizontal */
+.card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--card-width, 600px); 
+    height: var(--card-height, 390px); 
+    cursor: pointer;
+    transform-style: preserve-3d;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: auto; 
+    will-change: transform, filter;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card-media {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.card-media img {
+    position: absolute;
+    top: 0;
+    left: 0;                
+    width: 100%;            
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    transition: opacity 0.5s ease;
+}
+
+/* ==========================================================================
+   5. LÉGENDE DU PROJET ACTIF
+   ========================================================================== */
+.active-project-info {
+    position: absolute;
+    top: calc(50% + (var(--card-height, 390px) * 0.55) + clamp(45px, 6vh, 90px));
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: auto;       
+    cursor: pointer;
+    z-index: 100;                
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    max-width: 90vw;
+}
+
+#active-title {
+    font-size: clamp(28px, 3.8vw + 1vh, 60px);
+    line-height: 1.1;
+    margin-bottom: clamp(4px, 0.8vh, 8px);
+    text-align: center;
+    letter-spacing: -1px;
+}
+
+/* Premier mot : Bricolage Grotesque Bold */
+.title-bricolage {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: "opsz" 72, "wght" 800; /* Bold (800) */
+    text-transform: uppercase;
+}
+
+/* Mots suivants : Cormorant Garamond Medium Italic */
+.title-cormorant {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500; /* Medium (500) */
+    font-style: italic; /* Italic */
+    text-transform: uppercase;
+}
+
+/* Sous-titre : Bricolage Grotesque Light */
+#active-category {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(12px, 1.1vw, 16px);
+    font-variation-settings: "opsz" 72, "wght" 300; /* Light (300) */
+    text-transform: none; /* Cas mixte (ex: Identité visuelle) */
+    opacity: 0.8;
+    letter-spacing: -0.1px;
+}
+
+/* ==========================================================================
+   6. INDICATEUR DE SCROLL
+   ========================================================================== */
+.scroll-indicator {
+    position: absolute;
+    bottom: clamp(20px, 4vh, 50px);
+    right: clamp(20px, 4vw, 50px);
+    font-size: clamp(13px, 1.1vw, 15px);
+    text-transform: lowercase;
+    letter-spacing: -0.2px;
+    font-variation-settings: "opsz" 72, "wght" 500;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+.scroll-indicator::after {
+    content: '';
+    width: 1px;
+    height: 20px;
+    background-color: #000000;
+    transform-origin: top;
+    animation: scrollLineAnim 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes scrollLineAnim {
+    0% {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scaleY(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+        opacity: 0;
+    }
+}

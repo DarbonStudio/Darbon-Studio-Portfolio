@@ -1,0 +1,240 @@
+/* ==========================================================================
+   RESET & POLICES
+   ========================================================================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: #000000;
+    color: #ffffff;
+    height: auto;             
+    min-height: 100vh;
+    overflow-y: auto;         
+    overflow-x: hidden;
+    font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+/* ==========================================================================
+   VITESSE DE TRANSITION LORS DE L'ENTRÉE (DYNAMIQUE - 0.45s)
+   ========================================================================== */
+   @view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(root),
+::view-transition-group(project-image) {
+    animation-duration: 0.45s !important; /* Entrée rapide et fluide */
+}
+
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(project-image),
+::view-transition-new(project-image) {
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* ==========================================================================
+   SECTION 1 : HERO
+   ========================================================================== */
+.project-hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;            
+    overflow: hidden;
+}
+
+.project-hero-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.project-hero-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    view-transition-name: project-image; 
+}
+
+.project-hero-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45); 
+    z-index: 2;
+}
+
+/* TEXTES DE L'OVERLAY */
+.project-details-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(30px, 5vw, 80px);
+    
+    opacity: 0;
+    animation: fadeInText 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.9s; 
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   ANIMATION DE SORTIE COMPULSIVE DES TEXTES (0.3s)
+   ========================================================================== */
+body.exiting .project-details-overlay,
+body.exiting .project-scroll-content {
+    opacity: 0 !important;
+    transform: translateY(-15px) !important;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(11px, 1vw, 13px);
+    font-variation-settings: "wght" 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s ease;
+}
+
+.back-button:hover {
+    opacity: 0.6;
+}
+
+.project-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(30px, 6vw, 120px);
+    align-items: flex-end;
+    width: 100%;
+}
+
+.info-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 5px;
+    margin-top: clamp(12px, 1.5vh, 25px);
+}
+
+.info-label:first-child {
+    margin-top: 0;
+}
+
+#detail-title {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-variation-settings: "wght" 800;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 15px;
+}
+
+#detail-category, #detail-date, #detail-client {
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-variation-settings: "wght" 500;
+    text-transform: uppercase;
+}
+
+#detail-description {
+    font-size: clamp(16px, 1.8vw, 24px);
+    line-height: 1.35;
+    font-variation-settings: "wght" 300;
+    max-width: clamp(380px, 45vw, 580px);
+}
+
+/* ==========================================================================
+   SECTION 2 : CONTENU SCROLLABLE (SOUS LE PLI)
+   ========================================================================== */
+.project-scroll-content {
+    background-color: #0b0b0b; 
+    padding: clamp(60px, 8vw, 140px) clamp(30px, 5vw, 80px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(50px, 6vw, 120px);
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content-row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(30px, 6vw, 120px);
+}
+
+.content-row h2 {
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-variation-settings: "wght" 700;
+    color: #ffffff;
+    opacity: 0.4;
+}
+
+.content-row p {
+    font-size: clamp(16px, 1.8vw, 24px);
+    line-height: 1.5;
+    font-variation-settings: "wght" 300;
+    color: #e0e0e0;
+}
+
+.project-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    width: 100%;
+    margin: 40px 0;
+}
+
+.grid-item {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grid-item:hover img {
+    transform: scale(1.04); 
+}
