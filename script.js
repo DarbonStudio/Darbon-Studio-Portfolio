@@ -29,7 +29,7 @@ function updateDimensions() {
     let widthFactor = 0.42;
     
     if (window.innerWidth >= 1600) {
-        maxW = 700;
+        maxW = 550;
         widthFactor = 0.50;
     } else if (window.innerWidth >= 1200) {
         maxW = 800;
