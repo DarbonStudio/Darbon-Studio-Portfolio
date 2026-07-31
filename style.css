@@ -161,7 +161,6 @@ a {
     height: var(--card-height, 390px); 
     cursor: pointer;
     transform-style: preserve-3d;
-    overflow: hidden;
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: auto; 
@@ -190,6 +189,41 @@ a {
     pointer-events: none;
     -webkit-user-drag: none;
     transition: opacity 0.5s ease;
+}
+
+.card-hover-text {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.card-hover-text span {
+    color: #000000;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(13px, 1.1vw, 15px);
+    font-weight: 500;
+    font-variation-settings: "opsz" 72, "wght" 500;
+    letter-spacing: -0.2px;
+}
+
+.hover-title {
+    text-align: left;
+}
+
+.hover-category {
+    text-align: right;
+}
+
+.card:not(.active):hover .card-hover-text {
+    opacity: 1;
 }
 
 /* ==========================================================================
