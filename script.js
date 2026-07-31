@@ -89,8 +89,16 @@ const cardItems = Array.from(cards).map((card) => {
     }
     
     // Génération dynamique des textes de survol au-dessus de l'image (cartes non-actives)
-    const title = card.getAttribute('data-title').replace(/<br\s*\/?>/gi, ' ');
-    const category = card.getAttribute('data-category');
+    const rawTitle = card.getAttribute('data-title').replace(/<br\s*\/?>/gi, ' ');
+    const rawCategory = card.getAttribute('data-category');
+    
+    const formatText = (text) => {
+        if (!text) return '';
+        return text.toLowerCase().replace(/(?:^|\s|-)\w/g, match => match.toUpperCase());
+    };
+
+    const title = formatText(rawTitle);
+    const category = formatText(rawCategory);
     
     const textContainer = document.createElement('div');
     textContainer.className = 'card-hover-text';
@@ -107,7 +115,7 @@ const cardItems = Array.from(cards).map((card) => {
     textContainer.appendChild(catSpan);
     card.appendChild(textContainer);
     
-    return { card, img };
+    return { card, img, titleSpan, catSpan };
 });
 
 // Buffers de calcul réutilisables (anti Garbage Collection)
@@ -451,6 +459,16 @@ function animate() {
         card.style.transform = `translateX(${renderX}px) translateZ(${renderZ}px) scale(${renderScale})`;
         card.style.zIndex = Math.round(scale * 100);
         card.style.opacity = 1.0;
+
+        if (item.titleSpan && item.catSpan) {
+            const perspective = 1100;
+            const perspectiveScale = perspective / (perspective - renderZ);
+            const invScale = (1.0 / renderScale) / perspectiveScale;
+            item.titleSpan.style.transform = `scale(${invScale})`;
+            item.titleSpan.style.transformOrigin = `bottom left`;
+            item.catSpan.style.transform = `scale(${invScale})`;
+            item.catSpan.style.transformOrigin = `bottom right`;
+        }
 
         if (absX < minDistanceToCenter) {
             minDistanceToCenter = absX;

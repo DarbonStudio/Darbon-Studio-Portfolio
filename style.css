@@ -79,7 +79,7 @@ a {
 
 .nav-link {
     font-size: clamp(13px, 1.1vw, 15px);
-    text-transform: none; 
+    text-transform: capitalize; 
     letter-spacing: -0.2px;
     transition: opacity 0.3s ease;
     font-variation-settings: "opsz" 72, "wght" 500;
@@ -107,7 +107,7 @@ a {
 
 .social-links a {
     font-size: clamp(13px, 1.1vw, 15px);
-    text-transform: none; 
+    text-transform: capitalize; 
     letter-spacing: -0.2px;
     transition: opacity 0.3s ease;
     font-variation-settings: "opsz" 72, "wght" 500;
@@ -206,13 +206,14 @@ a {
 }
 
 .card-hover-text span {
+    display: block;
     color: #000000;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: clamp(13px, 1.1vw, 15px);
     text-transform: none; 
     letter-spacing: -0.2px;
     transition: opacity 0.3s ease;
-    font-variation-settings: "opsz" 72, "wght" 500;
+    font-variation-settings: "opsz" 72, "wght" 300;
 }
 
 .hover-title {
@@ -276,7 +277,7 @@ a {
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: clamp(14px, 1.6vw + 0.4vh, 22px);
     font-variation-settings: "opsz" 72, "wght" 300; /* Light (300) */
-    text-transform: none; /* Cas mixte (ex: Identité visuelle) */
+    text-transform: capitalize; /* Cas mixte (ex: Identité visuelle) */
     opacity: 0.8;
     letter-spacing: -0.1px;
     margin-top: 0;
@@ -290,7 +291,7 @@ a {
     bottom: clamp(20px, 4vh, 50px);
     right: clamp(20px, 4vw, 50px);
     font-size: clamp(13px, 1.1vw, 15px);
-    text-transform: none;
+    text-transform: capitalize;
     letter-spacing: -0.2px;
     font-variation-settings: "opsz" 72, "wght" 500;
     opacity: 0.8;
