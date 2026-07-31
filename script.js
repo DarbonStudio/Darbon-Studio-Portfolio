@@ -277,7 +277,13 @@ function openProject(card) {
 cards.forEach((card) => {
     card.addEventListener('click', () => {
         if (!hasDragged) {
-            openProject(card);
+            if (card.classList.contains('active')) {
+                openProject(card);
+            } else {
+                const currentXOff = parseFloat(card.dataset.currentX || '0');
+                const diffSteps = Math.round(currentXOff / spacing);
+                targetX -= diffSteps * spacing;
+            }
         }
     });
 });
@@ -454,9 +460,10 @@ function animate() {
         const zDepth = 0; // Removed progress-based zDepth to fix perspective X overlap
         const renderZ = 150 + zDepth + currentSpeedDepth;
         const renderX = x;
+        const renderY = progress * 5; // 5vh offset to push side cards down to true center
         const renderScale = scale;
 
-        card.style.transform = `translateX(${renderX}px) translateZ(${renderZ}px) scale(${renderScale})`;
+        card.style.transform = `translateX(${renderX}px) translateY(${renderY}vh) translateZ(${renderZ}px) scale(${renderScale})`;
         card.style.zIndex = Math.round(scale * 100);
         card.style.opacity = 1.0;
 
