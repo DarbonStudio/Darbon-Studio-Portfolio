@@ -25,8 +25,18 @@ let halfTotalWidth = totalWidth / 2;
 // 2. ADAPTATION RESPONSIVE DE LA TAILLE DES CARTES
 // --------------------------------------------------------------------------
 function updateDimensions() {
-    const maxW = 600;
-    const computedW = Math.min(maxW, Math.max(320, Math.min(window.innerWidth * 0.42, (window.innerHeight - 180) * 1.15)));
+    let maxW = 400;
+    let widthFactor = 0.42;
+    
+    if (window.innerWidth >= 1600) {
+        maxW = 700;
+        widthFactor = 0.50;
+    } else if (window.innerWidth >= 1200) {
+        maxW = 800;
+        widthFactor = 0.48;
+    }
+    
+    const computedW = Math.min(maxW, Math.max(320, Math.min(window.innerWidth * widthFactor, (window.innerHeight - 180) * 1.35)));
     cardBaseWidth = computedW;
     cardBaseHeight = computedW * (390 / 600);
     spacing = computedW * 0.85;
