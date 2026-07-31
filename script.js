@@ -450,9 +450,11 @@ function animate() {
         const x = finalX[index];
         card.dataset.currentX = x;
 
-        const absX = Math.abs(x);
-        const progress = Math.min(absX / spacing, 1.0);
+        const rawAbsX = Math.abs(rawX[index]);
+        const progress = Math.min(rawAbsX / spacing, 1.0);
         const scale = scales[index];
+        
+        const absX = Math.abs(x);
 
         const brightness = 1.0 - progress * 0.35;
         card.style.filter = `brightness(${brightness})`;
