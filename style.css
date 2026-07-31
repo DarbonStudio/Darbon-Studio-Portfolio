@@ -209,9 +209,10 @@ a {
     color: #000000;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: clamp(13px, 1.1vw, 15px);
-    font-weight: 500;
-    font-variation-settings: "opsz" 72, "wght" 500;
+    text-transform: none; 
     letter-spacing: -0.2px;
+    transition: opacity 0.3s ease;
+    font-variation-settings: "opsz" 72, "wght" 500;
 }
 
 .hover-title {
