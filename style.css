@@ -194,8 +194,8 @@ a {
 .card-hover-text {
     position: absolute;
     bottom: calc(100% + 12px);
-    left: 0;
-    right: 0;
+    left: 12px;
+    right: 12px;
     opacity: 0;
     transition: opacity 0.4s ease;
     display: flex;
